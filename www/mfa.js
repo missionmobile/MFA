@@ -1,4 +1,3 @@
-cordova.define("cordova-plugin-mfa.mfa", function (require, exports, module) {
     /*
      *
      * Licensed to the Apache Software Foundation (ASF) under one
@@ -142,4 +141,3 @@ cordova.define("cordova-plugin-mfa.mfa", function (require, exports, module) {
     channel.onCordovaReady.subscribe(MFA.subscribe);
 
     module.exports = MFA;
-});
