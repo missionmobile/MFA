@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-mfa"
+    version="0.0.1">
+    <name>MFA</name>
+    <description>Meyer Werft MFA</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,mfa</keywords>
+    
+    <js-module src="www/mfa.js" name="mfa">
+        <clobbers target="mfa" />
+    </js-module>
+</plugin>
