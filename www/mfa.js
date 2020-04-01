@@ -21,12 +21,13 @@
 
     var exec = require('cordova/exec');
     var channel = require('cordova/channel');
+    var 
 
 
     var MFA = {
         subscribe: function () {
             let url = "https://meydailysap.meyerwerft.de/login";
-            let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
+            let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
             ref.addEventListener('exit', this.exitHandler.apply(this, ref));
@@ -138,6 +139,6 @@
     }
 
 
-    channel.onCordovaReady.subscribe(MFA.subscribe);
+channel.onCordovaReady.subscribe(MFA.subscribe);
 
     module.exports = MFA;
