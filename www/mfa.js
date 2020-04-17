@@ -26,7 +26,7 @@
 
     var MFA = {
         subscribe: function () {
-            let url = "https://meydailysap.meyerwerft.de/login";
+            let url = "https://uatmeydailysap.meyerwerft.de/login";
             let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
