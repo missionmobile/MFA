@@ -30,8 +30,8 @@
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
             ref.addEventListener('exit', MFA.exitHandler.apply(this, ref));
-            ref.addEventListener('loadstop', this.loadStopHandler.apply(this, ref));
-            ref.addEventListener('loaderror', this.loadErrorHandler.apply(this, ref)); // comment this line if using iOS + self-signed http certificate
+            ref.addEventListener('loadstop', MFA.loadStopHandler.apply(this, ref));
+            ref.addEventListener('loaderror', MFA.loadErrorHandler.apply(this, ref)); // comment this line if using iOS + self-signed http certificate
         },
         loadStopHandler: function (event, ref) {
             debugger;
