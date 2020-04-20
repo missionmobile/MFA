@@ -21,12 +21,11 @@
 
     var exec = require('cordova/exec');
     var channel = require('cordova/channel');
-    var 
 
 
     var MFA = {
         subscribe: function () {
-            let url = "https://uatmeydailysap.meyerwerft.de/login";
+            let url = "https://uatmeydailysap.meyerwerft.de/neptune-uat";
             let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
@@ -35,7 +34,7 @@
             ref.addEventListener('loaderror', this.loadErrorHandler.apply(this, ref)); // comment this line if using iOS + self-signed http certificate
         },
         loadStopHandler: function (event, ref) {
-
+            debugger;
             // Search for Ping
             ref.executeScript({
                     code: "document.getElementById('success');"
