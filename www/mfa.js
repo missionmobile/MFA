@@ -29,11 +29,11 @@
             let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
-            ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
-            ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
-            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
+            ref.addEventListener('exit', MFA.exitHandler.bind(ref));
+            ref.addEventListener('loadstop', MFA.loadStopHandler.bind(ref));
+            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(ref)); // comment this line if using iOS + self-signed http certificate
         },
-        loadStopHandler: function (event, ref) {
+        loadStopHandler: function (ref) {
             // Search for Ping
             ref.executeScript({
                     code: "document.title === 'Logon Success Message';"
