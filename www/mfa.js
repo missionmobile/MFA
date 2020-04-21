@@ -35,7 +35,7 @@
         },
         loadStopHandler: function (ref) {
             // Search for Ping
-            ref.executeScript({
+            this.executeScript({
                     code: "document.title === 'Logon Success Message';"
                 },
                 function (values) {
@@ -45,10 +45,10 @@
                     // Ping found
                     if (aPing) {
                         found = true;
-                        ref.close();
+                        this.close();
                         console.log("Ping found");
                         sap.ui.core.BusyIndicator.hide();
-                        ref.removeEventListener('loadstop', loadStopHandler);
+                        this.removeEventListener('loadstop', MFA.loadStopHandler);
 
                         if (typeof successCallback == 'function') {
                             successCallback(error);
@@ -60,7 +60,7 @@
                     if (!error) { // if error found do not submit credentials again
 
                         // Autocomplete
-                        ref.executeScript({
+                        this.executeScript({
                             code: formScript
                         }, function (values) {
                             console.log("Submitted credentials " + repetitions);
@@ -72,7 +72,7 @@
                     if (errorScript != '') {
                         setTimeout(function () {
 
-                            ref.executeScript({
+                            this.executeScript({
                                     code: errorScript
                                 },
                                 function (values) {
@@ -84,13 +84,13 @@
                                         console.log("Error found");
 
                                         if (AppCache.BDCshowProcess === 'N') {
-                                            ref.removeEventListener('loadstop', loadStopHandler);
-                                            ref.removeEventListener('loaderror', loadErrorHandler);
-                                            ref.removeEventListener('exit', exitHandler);
-                                            ref.close();
+                                            this.removeEventListener('loadstop', MFA.loadStopHandler);
+                                            this.removeEventListener('loaderror', MFA.loadErrorHandler);
+                                            this.removeEventListener('exit', MFA.exitHandler);
+                                            this.close();
                                         } else {
                                             AppCache.enablePasscode = false; // do not store Auth if user corrects in window
-                                            ref.show();
+                                            this.show();
                                         }
 
                                         if (typeof errorCallback == 'function') {
@@ -98,37 +98,37 @@
                                         }
 
                                     }
-                                });
+                                }).bind(this);
 
-                        }, 1000);
+                        }, 1000).bind(this);
                     }
 
                     repetitions++;
 
-                });
+                }).bind(this);
 
         },
 
         exitHandler: function (ref) {
             error = true;
-            //sap.ui.core.BusyIndicator.hide();
+            sap.ui.core.BusyIndicator.hide();
 
             console.log("Exit");
-            ref.removeEventListener('loadstop', loadStopHandler);
-            ref.removeEventListener('loaderror', loadErrorHandler);
-            ref.removeEventListener('exit', exitHandler);
-            ref.close();
+            this.removeEventListener('loadstop', MFA.loadStopHandler);
+            this.removeEventListener('loaderror', MFA.loadErrorHandler);
+            this.removeEventListener('exit', MFA.exitHandler);
+            this.close();
         },
 
         loadErrorHandler: function (params, ref) {
             error = true;
-            //sap.ui.core.BusyIndicator.hide();
+            sap.ui.core.BusyIndicator.hide();
 
             console.log("Load Error: " + params.message);
-            ref.removeEventListener('loadstop', loadStopHandler);
-            ref.removeEventListener('loaderror', loadErrorHandler);
-            ref.removeEventListener('exit', exitHandler);
-            ref.close();
+            this.removeEventListener('loadstop', MFA.loadStopHandler);
+            this.removeEventListener('loaderror', MFA.loadErrorHandler);
+            this.removeEventListener('exit', MFA.exitHandler);
+            this.close();
 
             if (typeof errorCallback == 'function') {
                 errorCallback(params.message);
