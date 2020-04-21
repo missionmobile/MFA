@@ -111,7 +111,7 @@
 
         exitHandler: function (ref) {
             error = true;
-            sap.ui.core.BusyIndicator.hide();
+            //sap.ui.core.BusyIndicator.hide();
 
             console.log("Exit");
             ref.removeEventListener('loadstop', loadStopHandler);
@@ -122,7 +122,7 @@
 
         loadErrorHandler: function (params, ref) {
             error = true;
-            sap.ui.core.BusyIndicator.hide();
+            //sap.ui.core.BusyIndicator.hide();
 
             console.log("Load Error: " + params.message);
             ref.removeEventListener('loadstop', loadStopHandler);
