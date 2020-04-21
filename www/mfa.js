@@ -34,14 +34,13 @@
             ref.addEventListener('loaderror', MFA.loadErrorHandler.apply(this, ref)); // comment this line if using iOS + self-signed http certificate
         },
         loadStopHandler: function (event, ref) {
-            debugger;
             // Search for Ping
             ref.executeScript({
-                    code: "document.getElementById('success');"
+                    code: "document.title === 'Logon Success Message';"
                 },
                 function (values) {
 
-                    var aPing = values[0];
+                    var aPing = values;
 
                     // Ping found
                     if (aPing) {
