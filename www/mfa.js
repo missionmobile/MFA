@@ -105,7 +105,7 @@
 
                     repetitions++;
 
-                }).bind(this);
+                });
 
         },
 
