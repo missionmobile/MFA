@@ -29,13 +29,13 @@
             let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
-            ref.addEventListener('exit', MFA.exitHandler.bind(ref));
-            ref.addEventListener('loadstop', MFA.loadStopHandler.bind(ref));
-            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(ref)); // comment this line if using iOS + self-signed http certificate
+            ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
+            ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
+            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
         },
         loadStopHandler: function (ref) {
             // Search for Ping
-            this.executeScript({
+            ref.executeScript({
                     code: "document.title === 'Logon Success Message';"
                 },
                 function (values) {
@@ -45,10 +45,10 @@
                     // Ping found
                     if (aPing) {
                         found = true;
-                        this.close();
+                        ref.close();
                         console.log("Ping found");
                         sap.ui.core.BusyIndicator.hide();
-                        this.removeEventListener('loadstop', MFA.loadStopHandler);
+                        ref.removeEventListener('loadstop', MFA.loadStopHandler);
 
                         if (typeof successCallback == 'function') {
                             successCallback(error);
@@ -60,7 +60,7 @@
                     if (!error) { // if error found do not submit credentials again
 
                         // Autocomplete
-                        this.executeScript({
+                        ref.executeScript({
                             code: formScript
                         }, function (values) {
                             console.log("Submitted credentials " + repetitions);
@@ -72,7 +72,7 @@
                     if (errorScript != '') {
                         setTimeout(function () {
 
-                            this.executeScript({
+                            ref.executeScript({
                                     code: errorScript
                                 },
                                 function (values) {
@@ -84,13 +84,13 @@
                                         console.log("Error found");
 
                                         if (AppCache.BDCshowProcess === 'N') {
-                                            this.removeEventListener('loadstop', MFA.loadStopHandler);
-                                            this.removeEventListener('loaderror', MFA.loadErrorHandler);
-                                            this.removeEventListener('exit', MFA.exitHandler);
-                                            this.close();
+                                            ref.removeEventListener('loadstop', MFA.loadStopHandler);
+                                            ref.removeEventListener('loaderror', MFA.loadErrorHandler);
+                                            ref.removeEventListener('exit', MFA.exitHandler);
+                                            ref.close();
                                         } else {
                                             AppCache.enablePasscode = false; // do not store Auth if user corrects in window
-                                            this.show();
+                                            ref.show();
                                         }
 
                                         if (typeof errorCallback == 'function') {
@@ -98,9 +98,9 @@
                                         }
 
                                     }
-                                }).bind(this);
+                                });
 
-                        }, 1000).bind(this);
+                        }, 1000);
                     }
 
                     repetitions++;
@@ -114,10 +114,10 @@
             sap.ui.core.BusyIndicator.hide();
 
             console.log("Exit");
-            this.removeEventListener('loadstop', MFA.loadStopHandler);
-            this.removeEventListener('loaderror', MFA.loadErrorHandler);
-            this.removeEventListener('exit', MFA.exitHandler);
-            this.close();
+            ref.removeEventListener('loadstop', MFA.loadStopHandler);
+            ref.removeEventListener('loaderror', MFA.loadErrorHandler);
+            ref.removeEventListener('exit', MFA.exitHandler);
+            ref.close();
         },
 
         loadErrorHandler: function (params, ref) {
@@ -125,10 +125,10 @@
             sap.ui.core.BusyIndicator.hide();
 
             console.log("Load Error: " + params.message);
-            this.removeEventListener('loadstop', MFA.loadStopHandler);
-            this.removeEventListener('loaderror', MFA.loadErrorHandler);
-            this.removeEventListener('exit', MFA.exitHandler);
-            this.close();
+            ref.removeEventListener('loadstop', MFA.loadStopHandler);
+            ref.removeEventListener('loaderror', MFA.loadErrorHandler);
+            ref.removeEventListener('exit', MFA.exitHandler);
+            ref.close();
 
             if (typeof errorCallback == 'function') {
                 errorCallback(params.message);
