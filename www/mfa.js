@@ -39,8 +39,9 @@
                     code: "document.title === 'Logon Success Message';"
                 },
                 function (values) {
-
-                    var aPing = values;
+                    var error = true;
+                    var errorScript = '';
+                    var aPing = values[0];
 
                     // Ping found
                     if (aPing) {
@@ -103,7 +104,7 @@
                         }, 1000);
                     }
 
-                    repetitions++;
+                    //repetitions++;
 
                 });
 
