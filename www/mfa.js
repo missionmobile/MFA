@@ -25,7 +25,7 @@
 
     var MFA = {
         subscribe: function () {
-            let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
+            let url = "https://uatmeydailysap.meyerwerft.de/neptune/native/neptune_login_ping.html";
             //let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes,usewkwebview=yes";
             let options = "location=no,toolbar=no,usewkwebview=no,clearcache=no,clearsessioncache=no,cleardata=no";
 
@@ -47,7 +47,9 @@
         loadStopHandler: function (ref) {
             // Search for Ping
             ref.executeScript({
-                    code: "document.title === 'Logon Success Message';"
+                
+                    code: "document.getElementById('ping');"
+                    //code: "document.title === 'Logon Success Message';"
                 },
                 function (values) {
                     var error = true;
