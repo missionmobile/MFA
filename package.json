@@ -12,7 +12,7 @@
   "engines": {
     "cordovaDependencies": {
       "0.0.1": {
-        "cordova-plugin-inappbrowser": "3.2.0"
+        "cordova-plugin-inappbrowser": "3.1.0"
       }
     }
   },
