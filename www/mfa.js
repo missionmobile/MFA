@@ -25,14 +25,17 @@
 
     var MFA = {
         subscribe: function () {
-            let url = "https://uatmeydailysap.meyerwerft.de/neptune/native/neptune_login_ping.html";
+            let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
             //let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes,usewkwebview=yes";
-            let options = "location=no,toolbar=no,usewkwebview=no,clearcache=no,clearsessioncache=no,cleardata=no";
+            let options = 'location=no,toolbar=no,clearcache=yes,clearsessioncache=yes';
+            
+            setTimeout(()=>{
+                let ref = cordova.InAppBrowser.open(url, '_blank', options);
+                ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
+                ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
+                ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
 
-            let ref = cordova.InAppBrowser.open(url, '_blank', options);
-            ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
-            ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
-            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
+            }, 10000)
         },
         onOnline: function () {
             /*let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
