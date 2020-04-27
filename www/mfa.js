@@ -35,7 +35,7 @@
             ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
         },
         onOnline: function () {
-            let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
+            /*let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
             //let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no,usewkwebview=yes";
             let options = "location=no,toolbar=no,usewkwebview=no,clearcache=no,clearsessioncache=no,cleardata=no";
 
@@ -43,7 +43,8 @@
             ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
             ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
             ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
-        },
+       */
+       },
         loadStopHandler: function (ref) {
             // Search for Ping
             ref.executeScript({
