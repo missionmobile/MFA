@@ -26,8 +26,7 @@
     var MFA = {
         subscribe: function () {
             let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
-            //let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes,usewkwebview=yes";
-            let options = 'location=no,toolbar=no,clearcache=yes,clearsessioncache=yes';
+            let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no,usewkwebview=yes";
             
             setTimeout(()=>{
                 let ref = cordova.InAppBrowser.open(url, '_blank', options);
@@ -51,9 +50,7 @@
         loadStopHandler: function (ref) {
             // Search for Ping
             ref.executeScript({
-                
-                    code: "document.getElementById('ping');"
-                    //code: "document.title === 'Logon Success Message';"
+                    code: "document.title === 'Logon Success Message';"
                 },
                 function (values) {
                     var error = true;
