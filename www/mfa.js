@@ -26,7 +26,8 @@
     var MFA = {
         subscribe: function () {
             let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
-            let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
+            let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
+            //let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
             
             setTimeout(()=>{
                 let ref = cordova.InAppBrowser.open(url, '_blank', options);
@@ -37,13 +38,14 @@
             }, 10000)
         },
         onOnline: function () {
-            let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
+            /*let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
             let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
             ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
             ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
             ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
+            */
        },
         loadStopHandler: function (ref) {
             // Search for Ping
