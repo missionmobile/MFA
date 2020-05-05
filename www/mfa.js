@@ -26,8 +26,8 @@
     var MFA = {
         subscribe: function () {
             let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
-            let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
-            //let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
+            //let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
+            let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
             
             setTimeout(()=>{
                 let ref = cordova.InAppBrowser.open(url, '_blank', options);
