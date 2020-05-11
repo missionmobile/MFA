@@ -29,13 +29,13 @@
             //let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
             let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
             
-            setTimeout(()=>{
+            //setTimeout(()=>{
                 let ref = cordova.InAppBrowser.open(url, '_blank', options);
                 ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
                 ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
                 ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
 
-            }, 10000)
+            //}, 10000)
         },
         afterClear: function () {
             let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
@@ -49,14 +49,13 @@
 
         },
         onOnline: function () {
-            /*let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
+            let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
             let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
             ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
             ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
-            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
-            */
+            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate 
        },
         loadStopHandler: function (ref) {
             // Search for Ping
