@@ -25,7 +25,7 @@
 
     var MFA = {
         subscribe: function () {
-            let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
+            let url = "https://uatmeyqmapp.meyershipbuilding.com/logincheck";
             //let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
             let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
             
@@ -38,7 +38,7 @@
             }, 2000)
         },
         afterClear: function () {
-            let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
+            let url = "https://uatmeyqmapp.meyershipbuilding.com/logincheck";
             //let options = "location=no,toolbar=no,clearcache=yes,clearsessioncache=yes";
             let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no,hidden=yes";
             
@@ -49,7 +49,7 @@
 
         },
         onOnline: function () {
-            let url = "https://uatmeydailysap.meyerwerft.de/logincheck";
+            let url = "https://uatmeyqmapp.meyershipbuilding.com/logincheck";
             let options = "location=no,toolbar=no,clearcache=no,clearsessioncache=no";
 
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
