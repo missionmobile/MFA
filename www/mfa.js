@@ -33,7 +33,7 @@
                 let ref = cordova.InAppBrowser.open(url, '_blank', options);
                 ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
                 ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
-                ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
+                // ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
 
             }, 2000)
         },
@@ -45,7 +45,7 @@
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
             ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
             ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
-            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
+            // ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate
 
         },
         onOnline: function () {
@@ -55,7 +55,7 @@
             let ref = cordova.InAppBrowser.open(url, '_blank', options);
             ref.addEventListener('exit', MFA.exitHandler.bind(this, ref));
             ref.addEventListener('loadstop', MFA.loadStopHandler.bind(this, ref));
-            ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate 
+            // ref.addEventListener('loaderror', MFA.loadErrorHandler.bind(this, ref)); // comment this line if using iOS + self-signed http certificate 
        },
         loadStopHandler: function (ref) {
             // Search for Ping
